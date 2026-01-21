@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New York Beauty Center – Institut Beauté Premium Tunis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --rose-clair:   #fff5f8;
+            --rose-doux:    #ffe4ee;
+            --rose-principal: #ff69b4;
+            --rose-fonce:   #b8147a;
+            --noir-doux:    #1a1a1a;
+            --gris-texte:   #333333;
+            --blanc:        #ffffff;
+            --ombre-luxe:   0 12px 40px rgba(184,20,122,0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: var(--gris-texte);
+            background: var(--blanc);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(16px);
+            z-index: 2000;
+            padding: 1.1rem 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            padding: 0.8rem 7%;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo img {
+            height: 44px;
+            width: auto;
+        }
+
+        .brand-name {
+            font-size: 1.42rem;
+            font-weight: 600;
+            color: var(--rose-fonce);
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.8rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--noir-doux);
+            font-weight: 500;
+            font-size: 0.96rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.35s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -7px;
+            left: 50%;
+            background: var(--rose-principal);
+            transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+            transform: translateX(-50%);
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--rose-fonce);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .burger span {
+            width: 26px;
+            height: 3px;
+            background: var(--rose-fonce);
+            transition: all 0.4s;
+        }
+
+        /* Hero */
+        #hero {
+            height: 100vh;
+            min-height: 720px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        #hero video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.92);
+        }
+
+        .hero-layer {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(184,20,122,0.45));
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 3;
+            max-width: 920px;
+            padding: 0 2rem;
+        }
+
+        .hero-inner h1 {
+            font-size: 3.8rem;
+            font-weight: 300;
+            margin-bottom: 1.6rem;
+            letter-spacing: 1.6px;
+            text-shadow: 0 5px 22px rgba(0,0,0,0.65);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--rose-principal);
+            color: white;
+            padding: 1.1rem 3rem;
+            font-size: 1.12rem;
+            font-weight: 500;
+            border-radius: 60px;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            transition: all 0.45s cubic-bezier(0.22,1,0.36,1);
+            box-shadow: 0 8px 28px rgba(184,20,122,0.35);
+            cursor: pointer;
+            border: none;
+        }
+
+        .hero-cta:hover {
+            background: var(--rose-fonce);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 16px 44px rgba(184,20,122,0.45);
+        }
+
+        /* Services */
+        .services {
+            padding: 6rem 7% 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+        }
+
+        @media (min-width: 992px) {
+            .service-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2.5rem;
+            }
+        }
+
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: var(--ombre-luxe);
+            transition: all 0.5s ease;
+            background: var(--rose-clair);
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 24px 60px rgba(184,20,122,0.22);
+        }
+
+        .service-card video {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .service-info {
+            padding: 1.8rem 1.6rem;
+            text-align: center;
+        }
+
+        .service-info h3 {
+            color: var(--rose-fonce);
+            font-size: 1.55rem;
+            margin-bottom: 0.9rem;
+            font-weight: 500;
+        }
+
+        .service-info p {
+            font-size: 1.02rem;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--rose-fonce);
+            color: white;
+            padding: 4rem 7% 2.5rem;
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 1350px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .footer-inner {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+        }
+
+        .footer-brand h3 {
+            font-size: 1.9rem;
+            font-weight: 400;
+            margin-bottom: 1.3rem;
+        }
+
+        .footer-brand p {
+            opacity: 0.88;
+            font-size: 0.97rem;
+            line-height: 1.9;
+        }
+
+        .social-icons {
+            margin-top: 1.6rem;
+            display: flex;
+            gap: 1.4rem;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            opacity: 0.92;
+            transition: all 0.35s;
+        }
+
+        .social-icons a:hover {
+            opacity: 1;
+            transform: translateY(-4px);
+            color: var(--rose-doux);
+        }
+
+        .footer-col h4 {
+            font-size: 1.16rem;
+            margin-bottom: 1.4rem;
+            font-weight: 500;
+        }
+
+        .footer-col ul li,
+        .footer-col .contact-line {
+            margin: 0.8rem 0;
+            font-size: 0.97rem;
+            opacity: 0.9;
+        }
+
+        .footer-col a {
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--rose-doux);
+            padding-left: 6px;
+        }
+
+        .footer-map {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 14px 44px rgba(0,0,0,0.3);
+            margin-top: 1.8rem;
+            width: 100%;
+            height: 280px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2.2rem;
+            border-top: 1px solid rgba(255,255,255,0.18);
+            font-size: 0.89rem;
+            opacity: 0.84;
+        }
+
+        /* WhatsApp Float */
+        .wa-float {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 66px;
+            height: 66px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            font-size: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.26);
+            z-index: 1500;
+            transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+            text-decoration: none;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.16) translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.34);
+        }
+
+        /* Fade animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.3s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ====================== MODAL STYLES ====================== */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(4px);
+            z-index: 5000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 18px;
+            width: 100%;
+            max-width: 460px;
+            padding: 2.2rem 1.8rem;
+            position: relative;
+            box-shadow: var(--ombre-luxe);
+            animation: modalAppear 0.4s cubic-bezier(0.22,1,0.36,1);
+        }
+
+        @keyframes modalAppear {
+            from { opacity: 0; transform: translateY(35px) scale(0.96); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 2.1rem;
+            color: #777;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.25s;
+        }
+
+        .modal-close:hover {
+            color: var(--rose-fonce);
+        }
+
+        .modal h2 {
+            color: var(--rose-fonce);
+            font-size: 1.85rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.55rem;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .required {
+            color: #e63946;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.95rem 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.25s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--rose-principal);
+            box-shadow: 0 0 0 3px rgba(255,105,180,0.15);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin-top: 0.6rem;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 0.98rem;
+            color: #444;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--rose-principal);
+        }
+
+        .btn-whatsapp {
+            width: 100%;
+            margin-top: 1.8rem;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 1.15rem;
+            font-size: 1.08rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 24px rgba(37,213,102,0.28);
+        }
+
+        .btn-whatsapp:hover:not(:disabled) {
+            background: #20b958;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 36px rgba(37,213,102,0.4);
+        }
+
+        .btn-whatsapp:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        @media (max-width: 991px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2.5rem 7%;
+                box-shadow: 0 14px 44px rgba(0,0,0,0.15);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .burger {
+                display: flex;
+            }
+
+            .hero-inner h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 1.8rem 1.4rem;
+            }
+            .modal h2 {
+                font-size: 1.65rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="logo-wrap">
+            <div class="logo">
+                <img src="image/logo.jpg" alt="New York Beauty Center">
+            </div>
+            <span class="brand-name">New York Beauty Center</span>
+        </div>
+
+        <nav>
+            <div class="burger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+            <ul id="menu">
+                <li><a href="#hero">Accueil</a></li>
+                <li><a href="peau.html">Peau</a></li>
+                <li><a href="ongles.html">Ongles</a></li>
+                <li><a href="esm-sport.html">ESM Sport</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <video autoplay muted loop playsinline preload="metadata">
+            <source src="video/kalthoum.mp4" type="video/mp4">
+        </video>
+        <div class="hero-layer"></div>
+        <div class="hero-inner fade-up">
+            <h1>New York Beauty Center<br>L’Excellence en Beauté & Soin</h1>
+            <button class="hero-cta open-reservation">Réserver maintenant</button>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="service-grid">
+            <div class="service-card fade-up">
+                <video autoplay muted loop playsinline preload="metadata">
+                    <source src="video/peau2.mp4" type="video/mp4">
+                </video>
+                <div class="service-info">
+                    <h3>Soins Visage Premium</h3>
+                    <p>Nettoyage profond, éclat naturel, hydratation luxe dans un cadre hygiénique absolu.</p>
+                </div>
+            </div>
+
+            <div class="service-card fade-up">
+                <video autoplay muted loop playsinline preload="metadata">
+                    <source src="video/sport.mp4" type="video/mp4">
+                </video>
+                <div class="service-info">
+                    <h3>EMS Sport Sculpt</h3>
+                    <p>Tonification musculaire avancée, remodelage corps, bien-être revitalisé.</p>
+                </div>
+            </div>
+
+            <div class="service-card fade-up">
+                <video autoplay muted loop playsinline preload="metadata">
+                    <source src="video/ongle.mp4" type="video/mp4">
+                </video>
+                <div class="service-info">
+                    <h3>Ongles Signature</h3>
+                    <p>Manucure/Pédicure luxe, nail art précis, brillance longue durée.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>New York Beauty Center</h3>
+                <p>Institut beauté premium à Tunis<br>Soins d’exception – Hygiène irréprochable – Expérience unique</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Liens</h4>
+                <ul>
+                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="peau.html">Soins Visage</a></li>
+                    <li><a href="ongles.html">Ongles</a></li>
+                    <li><a href="ESM-sport.html">EMS Sport</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Horaires</h4>
+                <div class="contact-line"><i class="far fa-clock"></i> Lundi–Vendredi : 9h–20h</div>
+                <div class="contact-line"><i class="far fa-clock"></i> Samedi–Dimanche : 10h–18h</div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <div class="contact-line"><i class="fas fa-phone-alt"></i> +216 51 006 893</div>
+                <div class="contact-line"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/21651006893" style="color:white;">WhatsApp</a></div>
+                <div class="contact-line"><i class="fas fa-map-marker-alt"></i> Jardin de Manzah 2 – Avenue des Violettes</div>
+            </div>
+        </div>
+
+        <iframe class="footer-map" src="https://maps.app.goo.gl/vCJX32TKSAkkikWZA" allowfullscreen loading="lazy"></iframe>
+
+        <div class="copyright">
+            © 2026 New York Beauty Center – Tous droits réservés
+        </div>
+    </footer>
+
+    <!-- WhatsApp floating button (ouvre directement WhatsApp ou la modale selon ton choix) -->
+    <a href="https://wa.me/21651006893" class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ====================== MODAL RÉSERVATION ====================== -->
+    <div id="reservation-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fermer">×</button>
+            
+            <h2>Réserver votre soin</h2>
+            <p style="text-align:center; margin: 0 0 1.8rem; color:#555; font-size:0.98rem;">
+                New York Beauty Center – Tunis
+            </p>
+
+            <form id="reservation-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="prenom">Prénom <span class="required">*</span></label>
+                    <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+                </div>
+
+                <div class="form-group">
+                    <label for="nom">Nom <span class="required">*</span></label>
+                    <input type="text" id="nom" name="nom" required placeholder="Votre nom de famille">
+                </div>
+
+                <div class="form-group">
+                    <label>Service(s) souhaité(s) <span class="required">*</span></label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="service" value="Peau">
+                            <span>Peau – Soins visage premium</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="service" value="Vos Ongles">
+                            <span>Vos Ongles – Manucure & Nail art</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="service" value="ESM Sport">
+                            <span>ESM Sport – Sculpt & Tonification</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" id="btn-send-whatsapp" class="btn-whatsapp">
+                    Envoyer sur WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Menu burger
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('active');
+            document.querySelector('.burger').classList.toggle('active');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Fade-up observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // ====================== MODAL & FORMULAIRE ======================
+        const modal = document.getElementById('reservation-modal');
+        const btnClose = document.querySelector('.modal-close');
+        const form = document.getElementById('reservation-form');
+        const btnSend = document.getElementById('btn-send-whatsapp');
+
+        // Ouvrir la modale
+        document.querySelectorAll('.open-reservation, .hero-cta').forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.classList.add('show');
+            });
+        });
+
+        // Fermer la modale
+        btnClose.addEventListener('click', () => modal.classList.remove('show'));
+        modal.addEventListener('click', e => {
+            if (e.target === modal) modal.classList.remove('show');
+        });
+
+        // Validation + envoi WhatsApp
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const prenom = document.getElementById('prenom').value.trim();
+            const nom    = document.getElementById('nom').value.trim();
+            const services = Array.from(document.querySelectorAll('input[name="service"]:checked'))
+                                 .map(cb => cb.value);
+
+            if (!prenom || !nom) {
+                alert("Veuillez remplir votre prénom et nom.");
+                return;
+            }
+
+            if (services.length === 0) {
+                alert("Veuillez sélectionner au moins un service.");
+                return;
+            }
+
+            let message = `Bonjour,\n\nJe souhaite réserver au *New York Beauty Center* :\n\n`;
+            message += `Nom     : ${nom}\n`;
+            message += `Prénom  : ${prenom}\n`;
+            message += `Service(s) choisi(s) :\n`;
+            services.forEach(s => message += `- ${s}\n`);
+            message += `\nMerci.`;
+
+            const encodedMsg = encodeURIComponent(message);
+            const phone = "21658052184"; // ← CHANGE CE NUMÉRO SI NÉCESSAIRE
+
+            window.open(`https://wa.me/${phone}?text=${encodedMsg}`, '_blank');
+
+            // Optionnel : reset formulaire et fermer modal
+            // form.reset();
+            // modal.classList.remove('show');
+        });
+
+        // Désactiver bouton si formulaire incomplet (meilleure UX)
+        form.addEventListener('input', () => {
+            const prenomOK = document.getElementById('prenom').value.trim().length > 0;
+            const nomOK    = document.getElementById('nom').value.trim().length > 0;
+            const servicesOK = document.querySelectorAll('input[name="service"]:checked').length > 0;
+
+            btnSend.disabled = !(prenomOK && nomOK && servicesOK);
+        });
+    </script>
+
+</body>
+</html>
